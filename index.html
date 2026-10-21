@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Salem Alharbi</title>
+<meta name="description" content="Salem Alharbi, Computer Science graduate from the University of Ha'il. IT trainee experience, graduation project, skills and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Readex+Pro:wght@400;600;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050A1E;
+  --surface:#0B1438;
+  --surface-2:#101C4A;
+  --fg:#EAF0FF;
+  --muted:#93A4D6;
+  --line:#1C2C6B;
+  --blue:#2F6BFF;
+  --sky:#38BDF8;
+  --glow:rgba(47,107,255,.45);
+  --display:'Unbounded','Readex Pro','Figtree',system-ui,sans-serif;
+  --body:'Figtree','IBM Plex Sans Arabic',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.7;
+  padding-block:16px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  position:relative;overflow-x:hidden;
+}
+body.lock{overflow:hidden}
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;
+  background:radial-gradient(circle,var(--glow),transparent 65%);pointer-events:none;z-index:0;opacity:.55;
+  transform:translate(var(--mx,50vw),var(--my,30vh));will-change:transform}
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;background:linear-gradient(90deg,var(--blue),var(--sky));transform-origin:left;transform:scaleX(0)}
+html[dir="rtl"] .progress{transform-origin:right}
+.page{position:relative;z-index:1;max-width:1000px;margin-inline:auto;display:flex;flex-direction:column;gap:96px}
+section[id],header[id]{scroll-margin-top:110px}
+a{color:var(--sky);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.2}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+
+.bar{position:sticky;top:max(10px,env(safe-area-inset-top,0px));z-index:40;display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;
+  padding:10px 14px;border-radius:18px;background:rgba(8,15,44,.72);border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.logo{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:10px;color:var(--fg);text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--sky));display:grid;place-items:center;font-style:normal;font-size:15px;color:#fff;box-shadow:0 0 24px var(--glow)}
+nav{display:flex;gap:4px;order:3;width:100%;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+@media (min-width:900px){nav{order:0;width:auto;overflow:visible}}
+nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;font-weight:500;font-size:15px;white-space:nowrap;transition:color .2s,background .2s}
+nav a:hover{color:var(--fg);background:var(--surface)}
+nav a.active{color:#fff;background:var(--blue)}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.mini{font-family:var(--body);font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--blue);background:rgba(47,107,255,.14);color:var(--fg);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.mini:hover{background:var(--blue)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;padding-top:24px}
+h1{font-size:clamp(40px,10vw,88px);font-weight:800;letter-spacing:-.02em}
+h1 .grad{background:linear-gradient(100deg,var(--blue),var(--sky) 60%,#9BD8FF);-webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 100%;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.loc{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(16,28,74,.6);color:var(--muted);font-size:14px}
+.loc::before{content:"";width:8px;height:8px;border-radius:50%;background:#4CE3A0;box-shadow:0 0 10px #4CE3A0}
+.typed{font-family:var(--mono);font-size:clamp(16px,3.2vw,22px);min-height:1.6em;color:var(--fg)}
+.typed b{color:var(--sky);font-weight:500}
+.caret{display:inline-block;width:.6ch;height:1.1em;background:var(--sky);vertical-align:-.15em;margin-inline-start:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{max-width:60ch;color:var(--muted);font-size:19px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:12px;font-weight:600;text-decoration:none;color:var(--fg);
+  background:var(--surface);border:1px solid var(--line);cursor:pointer;font-family:inherit;font-size:16px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+.btn:hover{border-color:var(--blue);box-shadow:0 0 0 4px rgba(47,107,255,.15)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:linear-gradient(135deg,var(--blue),#1E4FD8);border-color:transparent;color:#fff;box-shadow:0 10px 30px -8px var(--glow)}
+.btn.primary:hover{box-shadow:0 14px 38px -6px var(--glow),0 0 0 4px rgba(56,189,248,.2)}
+.btn.cv{border-color:var(--sky);background:rgba(56,189,248,.1)}
+.btn.cv:hover{background:rgba(56,189,248,.2);box-shadow:0 0 0 4px rgba(56,189,248,.18)}
+.btn .arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+.ico{width:18px;height:18px;flex:none}
+html[dir="rtl"] .btn .arr{transform:scaleX(-1)}
+html[dir="rtl"] .btn:hover .arr{transform:scaleX(-1) translateX(4px)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.stat{padding:22px;border-radius:16px;background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid var(--line);display:flex;flex-direction:column;gap:4px;min-width:0;transition:transform .2s,border-color .2s}
+.stat:hover{transform:translateY(-4px);border-color:var(--blue)}
+.stat strong{font-family:var(--display);font-size:44px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums;
+  background:linear-gradient(120deg,#fff,var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:15px}
+
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+h2{font-size:clamp(26px,5vw,42px);font-weight:700;letter-spacing:-.01em}
+.hint{color:var(--muted);font-size:14px}
+
+.job{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 18px;margin-bottom:18px}
+.job b{font-family:var(--display);font-size:18px;font-weight:600}
+.job span{color:var(--muted)}
+.xp-list{display:flex;flex-direction:column;gap:10px;position:relative;padding-inline-start:26px}
+.xp-list::before{content:"";position:absolute;inset-block:8px;inset-inline-start:7px;width:2px;background:linear-gradient(var(--blue),var(--sky),transparent)}
+.xp{position:relative;border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:border-color .2s,background .2s}
+.xp::before{content:"";position:absolute;inset-inline-start:-25px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);transition:background .2s,box-shadow .2s}
+.xp.open{border-color:var(--blue);background:linear-gradient(160deg,var(--surface-2),var(--surface))}
+.xp.open::before{background:var(--sky);box-shadow:0 0 14px var(--sky)}
+.xp-h{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;background:none;border:0;color:var(--fg);font-family:var(--display);font-size:16px;font-weight:600;cursor:pointer;text-align:start}
+.xp-h .pm{flex:none;width:22px;height:22px;position:relative}
+.xp-h .pm::before,.xp-h .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;margin:-1px 0 0 -7px;background:var(--sky);transition:transform .25s}
+.xp-h .pm::after{transform:rotate(90deg)}
+.xp.open .pm::after{transform:rotate(0)}
+.xp-p{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.xp.open .xp-p{grid-template-rows:1fr}
+.xp-p>div{overflow:hidden}
+.xp-p p{padding:0 20px 18px;color:var(--muted)}
+
+.project{display:grid;gap:28px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:stretch}
+@media (max-width:860px){.project{grid-template-columns:minmax(0,1fr)}}
+.card{padding:30px;border-radius:20px;background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:16px;min-width:0;transition:transform .15s ease-out,border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--blue);box-shadow:0 30px 60px -30px var(--glow)}
+.card h3{font-size:19px}
+.feat{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;color:var(--muted)}
+.feat li{display:flex;gap:12px;align-items:flex-start}
+.feat li::before{content:"";flex:none;width:8px;height:8px;margin-top:10px;border-radius:2px;background:var(--sky);box-shadow:0 0 10px var(--sky);transform:rotate(45deg)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tags li{font-family:var(--mono);font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--sky);background:rgba(56,189,248,.06)}
+
+.console{border-radius:20px;border:1px solid var(--line);background:#030719;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 30px 70px -40px var(--glow)}
+.console-top{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.dot:nth-child(1){background:#2F6BFF}.dot:nth-child(2){background:#38BDF8}.dot:nth-child(3){background:#9BD8FF}
+.console-title{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px 0}
+.tab{font-family:var(--mono);font-size:12.5px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--fg);border-color:var(--blue)}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.screen{font-family:var(--mono);font-size:13.5px;line-height:1.8;padding:16px 20px 22px;min-height:240px;color:#C9D8FF;white-space:pre-wrap;word-break:break-word;flex:1}
+.screen .t{color:var(--muted)}.screen .p{color:var(--sky)}.screen .ok{color:#7CE0A8}
+.note{font-size:13px;color:var(--muted);padding:0 20px 16px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filter{font-family:var(--body);font-size:15px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s}
+.filter:hover{color:var(--fg);border-color:var(--blue)}
+.filter[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 8px 24px -8px var(--glow)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;min-height:120px;align-content:flex-start}
+.chip{padding:10px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--c,var(--blue));font-size:15px;animation:pop .45s cubic-bezier(.2,.8,.2,1) both;transition:transform .2s,background .2s}
+.chip:hover{transform:translateY(-3px);background:var(--surface-2)}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+
+.about{display:grid;gap:26px;grid-template-columns:minmax(0,1fr)}
+.about p{max-width:66ch;color:var(--muted);font-size:18px}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.path{padding:22px;border-radius:16px;background:linear-gradient(160deg,var(--surface-2),var(--surface));border:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0;transition:transform .2s,border-color .2s}
+.path:hover{transform:translateY(-4px);border-color:var(--blue)}
+.path b{font-family:var(--display);font-size:16px;font-weight:600;line-height:1.4}
+.path span:last-child{color:var(--muted);font-size:15px}
+
+.contact{padding:36px;border-radius:24px;background:linear-gradient(135deg,#0F2A8F,#1B4FE0 55%,#1E8FE0);display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden;box-shadow:0 40px 80px -40px var(--glow)}
+.contact h2{color:#fff}
+.contact p{color:#DCE8FF;max-width:50ch}
+.handles{display:flex;flex-direction:column;gap:10px}
+.handle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:12px;background:rgba(3,7,25,.45);border:1px solid rgba(255,255,255,.18);min-width:0}
+.handle code{font-family:var(--mono);font-size:14px;color:#fff;overflow-wrap:anywhere;direction:ltr}
+.copy{flex:none;font-family:var(--body);font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.14)}
+.contact .cta .btn{background:rgba(3,7,25,.55);border-color:rgba(255,255,255,.25)}
+.contact .cta .btn.primary{background:#fff;color:#0B1B66;border-color:#fff}
+.contact .cta .btn.cv{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+footer{color:var(--muted);font-family:var(--mono);font-size:13px;text-align:center}
+
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:rgba(2,5,18,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal.open{display:flex;animation:fade .25s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.sheet{width:min(920px,100%);height:min(92vh,92dvh);display:flex;flex-direction:column;border-radius:20px;border:1px solid var(--blue);background:var(--surface);overflow:hidden;box-shadow:0 40px 100px -20px var(--glow);animation:rise .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+.sheet-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line)}
+.sheet-top b{font-family:var(--display);font-size:15px;font-weight:600}
+.sheet-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sheet-actions a{font-size:14px;font-weight:600;padding:7px 12px;border-radius:10px;border:1px solid var(--line);color:var(--fg);text-decoration:none;background:var(--surface-2)}
+.sheet-actions a:hover{border-color:var(--sky)}
+.x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);cursor:pointer;font-size:20px;line-height:1}
+.x:hover{border-color:var(--sky)}
+.sheet iframe{flex:1;width:100%;border:0;background:#fff}
+.sheet-foot{padding:8px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .eyebrow,html[lang="ar"] .logo,html[lang="ar"] .xp-h{letter-spacing:0;text-transform:none}
+html[lang="ar"] h1{line-height:1.3}
+html[lang="ar"] .stat strong{line-height:1.2}
+
+.in{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+@media (prefers-reduced-motion:reduce){
+  .in,h1 .grad,.caret,.chip,.sheet,.modal.open{animation:none}
+  html{scroll-behavior:auto}
+  .card,.skill,.btn .arr,.xp-p{transition:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="net" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="glow" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="page">
+  <div class="bar in">
+    <a class="logo" href="#top"><i>S</i><span data-i18n="name">Salem Alharbi</span></a>
+    <div class="bar-actions">
+      <a class="mini cv-open" href="Salem-Alharbi-CV.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span data-i18n="view_cv">View CV</span></a>
+      <button class="mini" id="lang" type="button" aria-label="Switch language">العربية</button>
+    </div>
+    <nav aria-label="Sections" id="nav">
+      <a href="#top" data-sec="top" data-i18n="nav_home">Home</a>
+      <a href="#experience" data-sec="experience" data-i18n="nav_exp">Experience</a>
+      <a href="#project" data-sec="project" data-i18n="nav_proj">Project</a>
+      <a href="#skills" data-sec="skills" data-i18n="nav_skills">Skills</a>
+      <a href="#about" data-sec="about" data-i18n="nav_about">About</a>
+      <a href="#contact" data-sec="contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+  </div>
+
+  <header class="hero" id="top">
+    <span class="loc in d1" data-i18n="loc">Qassim, Saudi Arabia</span>
+    <span class="eyebrow in d1" data-i18n="eyebrow">Computer Science Graduate · University of Ha'il · 2026</span>
+    <h1 class="in d2"><span data-i18n="hi">Hi, I'm</span><br><span class="grad" data-i18n="name">Salem Alharbi</span></h1>
+    <p class="typed in d3" aria-live="off"><span id="typed"></span><span class="caret"></span></p>
+    <p class="lead in d3" data-i18n="lead">Computer Science graduate from the University of Ha'il with six months of cooperative training in the IT department at the Ministry of Environment, Water and Agriculture. I analyze problems and design practical web-based solutions.</p>
+    <div class="cta in d4">
+      <a class="btn primary cv-open" href="Salem-Alharbi-CV.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span data-i18n="view_cv">View CV</span></a>
+      <a class="btn" href="https://salem17170.github.io/it-support-portal/" target="_blank" rel="noopener"><span data-i18n="launch">Launch the live portal</span> <span class="arr">→</span></a>
+      <a class="btn" href="https://github.com/Salem17170" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/salem-alharbi9" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Highlights">
+    <div class="stat"><strong data-count="6">6</strong><span data-i18n="s1">months of cooperative training in IT</span></div>
+    <div class="stat"><strong data-count="5">5</strong><span data-i18n="s2">incident modules in my support portal</span></div>
+    <div class="stat"><strong data-count="2">2</strong><span data-i18n="s3">access roles: employee and IT technician</span></div>
+    <div class="stat"><strong data-count="4">4</strong><span data-i18n="s4">skill areas: software, databases, systems, analysis</span></div>
+  </section>
+
+  <section id="experience">
+    <div class="head"><span class="eyebrow" data-i18n="exp_eyebrow">Cooperative training</span><h2 data-i18n="exp_title">IT Trainee at the Ministry</h2><span class="hint" data-i18n="exp_hint">Select any item to read the details.</span></div>
+    <div class="job"><b data-i18n="job_org">Ministry of Environment, Water and Agriculture</b><span data-i18n="job_dates">March 2026 – August 2026</span></div>
+    <div class="xp-list" id="xp"></div>
+  </section>
+
+  <section id="project">
+    <div class="head"><span class="eyebrow" data-i18n="pr_eyebrow">Graduation project · 2026</span><h2 data-i18n="pr_title">Interactive Support Portal &amp; Technical Troubleshooting Guide</h2></div>
+    <div class="project">
+      <article class="card" id="tilt">
+        <ul class="feat" id="proj"></ul>
+        <ul class="tags" aria-label="Technologies"><li>JavaScript</li><li>HTML</li><li>Tailwind CSS</li><li>GitHub Pages</li></ul>
+        <div class="cta">
+          <a class="btn primary" href="https://salem17170.github.io/it-support-portal/" target="_blank" rel="noopener"><span data-i18n="demo">Live demo</span> <span class="arr">→</span></a>
+          <a class="btn" href="https://github.com/Salem17170/it-support-portal" target="_blank" rel="noopener" data-i18n="source">Source code</a>
+        </div>
+      </article>
+
+      <div class="console" dir="ltr" aria-label="Interactive diagnostic console">
+        <div class="console-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="console-title">support-console</span></div>
+        <div class="tabs" role="tablist" id="tabs">
+          <button class="tab" role="tab" aria-selected="true" data-k="printers" data-i18n="t_printers">Printers</button>
+          <button class="tab" role="tab" aria-selected="false" data-k="network" data-i18n="t_network">Network</button>
+          <button class="tab" role="tab" aria-selected="false" data-k="system" data-i18n="t_system">System</button>
+          <button class="tab" role="tab" aria-selected="false" data-k="outlook" data-i18n="t_outlook">Outlook</button>
+          <button class="tab" role="tab" aria-selected="false" data-k="security" data-i18n="t_security">Security</button>
+        </div>
+        <div class="screen" id="screen" aria-live="polite"></div>
+        <div class="note" dir="auto" data-i18n="note">Sample flows showing the kind of steps the portal walks through. Click a tab to replay.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="head"><span class="eyebrow" data-i18n="sk_eyebrow">Toolbox</span><h2 data-i18n="sk_title">Technical and professional skills</h2></div>
+    <div class="filters" role="tablist" id="filters"></div>
+    <div class="chips" id="chips" aria-live="polite"></div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="head" style="margin:0"><span class="eyebrow" data-i18n="ab_eyebrow">Professional summary</span><h2 data-i18n="ab_title">Built for practical IT and software work</h2></div>
+    <p data-i18n="ab_p1">Computer Science graduate combining a solid academic foundation in software engineering, databases, and systems analysis with hands-on practical experience gained within an enterprise IT environment. Skilled in technical troubleshooting, workstation configuration, user access management, and technical documentation. Experienced in requirements analysis and designing web-based solutions driven by structured problem-solving methodologies.</p>
+    <p data-i18n="ab_p2">Seeking an entry-level technical or engineering role to leverage analytical and technical skills in delivering robust and efficient digital solutions.</p>
+    <div class="paths">
+      <div class="path"><span class="eyebrow" data-i18n="p_edu">Education</span><b data-i18n="p_edu_t">Bachelor of Science in Computer Science</b><span data-i18n="p_edu_d">University of Ha'il · 2026</span></div>
+      <div class="path"><span class="eyebrow" data-i18n="p_exp">Training</span><b data-i18n="p_exp_t">IT Trainee (Co-op)</b><span data-i18n="p_exp_d">Ministry of Environment, Water and Agriculture · March 2026 – August 2026</span></div>
+      <div class="path"><span class="eyebrow" data-i18n="p_lang">Languages</span><b data-i18n="p_lang_t">Arabic · English</b><span data-i18n="p_lang_d">Arabic: Native · English: Good, technical reading and writing</span></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 data-i18n="c_title">Let's connect</h2>
+    <p data-i18n="c_text">I'm looking for an entry-level role in software or IT. The fastest way to reach me is LinkedIn, and my code lives on GitHub.</p>
+    <div class="handles">
+      <div class="handle"><code>linkedin.com/in/salem-alharbi9</code><button class="copy" type="button" data-copy="https://www.linkedin.com/in/salem-alharbi9" data-i18n="copy">Copy</button></div>
+      <div class="handle"><code>github.com/Salem17170</code><button class="copy" type="button" data-copy="https://github.com/Salem17170" data-i18n="copy">Copy</button></div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/salem-alharbi9" target="_blank" rel="noopener"><span data-i18n="msg_li">Message on LinkedIn</span> <span class="arr">→</span></a>
+      <a class="btn cv cv-open" href="Salem-Alharbi-CV.pdf" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg><span data-i18n="view_cv">View CV</span></a>    </div>
+  </section>
+
+  <footer data-i18n="footer">© 2026 Salem Alharbi</footer>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="sheet">
+    <div class="sheet-top">
+      <b id="modal-title" data-i18n="cv_title">Curriculum Vitae</b>
+      <div class="sheet-actions">
+        <a href="Salem-Alharbi-CV.pdf" target="_blank" rel="noopener" data-i18n="open_tab">Open in new tab</a>
+        <a href="Salem-Alharbi-CV.pdf" download data-i18n="dl">Download PDF</a>
+        <button class="x" id="close" type="button" aria-label="Close">×</button>
+      </div>
+    </div>
+    <iframe id="frame" title="Curriculum Vitae"></iframe>
+    <div class="sheet-foot" data-i18n="cv_fallback">If the CV does not appear, open it in a new tab.</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var T = {
+    en: {
+      name: 'Salem Alharbi', hi: "Hi, I'm", loc: 'Qassim, Saudi Arabia',
+      nav_home: 'Home', nav_exp: 'Experience', nav_proj: 'Project', nav_skills: 'Skills', nav_about: 'About', nav_contact: 'Contact',
+      eyebrow: "Computer Science Graduate · University of Ha'il · 2026",
+      lead: "Computer Science graduate from the University of Ha'il with six months of cooperative training in the IT department at the Ministry of Environment, Water and Agriculture. I analyze problems and design practical web-based solutions.",
+      view_cv: 'View CV', launch: 'Launch the live portal',
+      s1: 'months of cooperative training in IT', s2: 'incident modules in my support portal',
+      s3: 'access roles: employee and IT technician', s4: 'skill areas: software, databases, systems, analysis',
+      exp_eyebrow: 'Cooperative training', exp_title: 'IT Trainee at the Ministry', exp_hint: 'Select any item to read the details.',
+      job_org: 'Ministry of Environment, Water and Agriculture', job_dates: 'March 2026 – August 2026',
+      exp: [
+        {t: 'Operational issue resolution', d: 'Collaborated with the IT team to analyze and resolve operational issues concerning hardware, operating systems, networks, and enterprise platforms.'},
+        {t: 'User ticket analysis', d: 'Analyzed incoming user tickets and assisted in delivering appropriate technical solutions aligned with operational guidelines.'},
+        {t: 'Accounts and access management', d: 'Managed user accounts and access permissions across enterprise systems in accordance with established policies.'},
+        {t: 'Workstation deployment', d: 'Configured and deployed workstations, installed authorized enterprise software, and ensured device readiness for daily operations.'},
+        {t: 'LAN verification', d: 'Verified local area network (LAN) physical connectivity and integrated hardware peripherals into the IT environment.'},
+        {t: 'SOP documentation', d: 'Analyzed recurring technical incidents and documented resolutions by developing Standard Operating Procedures (SOPs).'},
+        {t: 'Team and user collaboration', d: 'Partnered closely with the IT staff and end-users to understand operational requirements and maintain system reliability.'}
+      ],
+      pr_eyebrow: 'Graduation project · 2026', pr_title: 'Interactive Support Portal & Technical Troubleshooting Guide',
+      proj: [
+        'Analyzed and designed an interactive self-service web platform assisting users in diagnosing and resolving common technical issues through structured, guided workflows.',
+        'Built intuitive, simplified user interfaces enabling non-technical staff to independently troubleshoot system and peripheral errors.',
+        'Translated functional requirements into structured business logic to facilitate maintainability and future system scalability.',
+        'Documented technical specifications, user requirements, and workflow logic to ensure usability and clean system architecture.',
+        'Applied software engineering and systems analysis principles to organize and structure project components effectively.'
+      ],
+      demo: 'Live demo', source: 'Source code',
+      t_printers: 'Printers', t_network: 'Network', t_system: 'System', t_outlook: 'Outlook', t_security: 'Security',
+      note: 'Sample flows showing the kind of steps the portal walks through. Click a tab to replay.',
+      sk_eyebrow: 'Toolbox', sk_title: 'Technical and professional skills',
+      cats: {all: 'All', software: 'Software', databases: 'Databases', systems: 'Systems & IT', analysis: 'Analysis', soft: 'Soft skills'},
+      skills: {
+        software: ['Computer Science Fundamentals & Algorithms', 'Software Engineering Principles & Systems Analysis', 'Web Application Development Fundamentals', 'Object-Oriented Programming (OOP)'],
+        databases: ['Database Queries (SQL)', 'Database Design & Data Modeling Fundamentals'],
+        systems: ['Windows Operating Systems Environment', 'Technical Troubleshooting & Diagnostics', 'Workstation Configuration & Deployment', 'User Account & Access Management', 'Local Area Networking Basics (LAN Connectivity)', 'Hardware & Peripheral Configuration'],
+        analysis: ['Requirements Analysis', 'Technical Documentation & System Specifications', 'Standard Operating Procedures (SOPs) Development', 'Logical Thinking & Problem Solving'],
+        soft: ['Effective Technical Communication', 'Teamwork & Cross-functional Collaboration', 'Adaptability & Rapid Learning of Emerging Systems', 'Task Prioritization & Attention to Detail']
+      },
+      ab_eyebrow: 'Professional summary', ab_title: 'Built for practical IT and software work',
+      ab_p1: 'Computer Science graduate combining a solid academic foundation in software engineering, databases, and systems analysis with hands-on practical experience gained within an enterprise IT environment. Skilled in technical troubleshooting, workstation configuration, user access management, and technical documentation. Experienced in requirements analysis and designing web-based solutions driven by structured problem-solving methodologies.',
+      ab_p2: 'Seeking an entry-level technical or engineering role to leverage analytical and technical skills in delivering robust and efficient digital solutions.',
+      p_edu: 'Education', p_edu_t: 'Bachelor of Science in Computer Science', p_edu_d: "University of Ha'il · 2026",
+      p_exp: 'Training', p_exp_t: 'IT Trainee (Co-op)', p_exp_d: 'Ministry of Environment, Water and Agriculture · March 2026 – August 2026',
+      p_lang: 'Languages', p_lang_t: 'Arabic · English', p_lang_d: 'Arabic: Native · English: Good, technical reading and writing',
+      c_title: "Let's connect",
+      c_text: "I'm looking for an entry-level role in software or IT. The fastest way to reach me is LinkedIn, and my code lives on GitHub.",
+      copy: 'Copy', copied: 'Copied', msg_li: 'Message on LinkedIn',
+      footer: '© 2026 Salem Alharbi',
+      cv_title: 'Curriculum Vitae', open_tab: 'Open in new tab', dl: 'Download PDF',
+      cv_fallback: 'If the CV does not appear, open it in a new tab.',
+      toggle: 'العربية', toggle_label: 'التبديل إلى العربية', close: 'Close',
+      roles: ['Computer Science graduate', 'IT Trainee, Ministry of Environment, Water and Agriculture', 'Systems analysis and web solutions', 'Open to entry-level software and IT roles']
+    },
+    ar: {
+      name: 'سالم الحربي', hi: 'مرحبًا، أنا', loc: 'القصيم، المملكة العربية السعودية',
+      nav_home: 'الرئيسية', nav_exp: 'الخبرة', nav_proj: 'المشروع', nav_skills: 'المهارات', nav_about: 'نبذة', nav_contact: 'تواصل',
+      eyebrow: 'خريج علوم الحاسب · جامعة حائل · 2026',
+      lead: 'خريج علوم الحاسب من جامعة حائل، أكملت ستة أشهر من التدريب التعاوني في قسم تقنية المعلومات بوزارة البيئة والمياه والزراعة. أحلل المشكلات وأصمم حلولًا عملية قائمة على الويب.',
+      view_cv: 'عرض السيرة الذاتية', launch: 'افتح البوابة المباشرة',
+      s1: 'أشهر تدريب تعاوني في تقنية المعلومات', s2: 'وحدات أعطال في بوابة الدعم الفني',
+      s3: 'صلاحيتان: موظف وفني دعم', s4: 'مجالات مهارية: برمجيات وقواعد بيانات وأنظمة وتحليل',
+      exp_eyebrow: 'التدريب التعاوني', exp_title: 'متدرب تقنية معلومات بالوزارة', exp_hint: 'اضغط على أي عنصر لقراءة التفاصيل.',
+      job_org: 'وزارة البيئة والمياه والزراعة', job_dates: 'مارس 2026 – أغسطس 2026',
+      exp: [
+        {t: 'حل المشكلات التشغيلية', d: 'تعاونت مع فريق تقنية المعلومات في تحليل وحل المشكلات التشغيلية المتعلقة بالأجهزة وأنظمة التشغيل والشبكات والمنصات المؤسسية.'},
+        {t: 'تحليل تذاكر المستخدمين', d: 'حللت التذاكر الواردة من المستخدمين وساعدت في تقديم الحلول التقنية المناسبة وفق الإرشادات التشغيلية.'},
+        {t: 'إدارة الحسابات والصلاحيات', d: 'أدرت حسابات المستخدمين وصلاحيات الوصول عبر الأنظمة المؤسسية وفق السياسات المعتمدة.'},
+        {t: 'تجهيز محطات العمل', d: 'جهزت محطات العمل ونشرتها، وثبّتُّ البرامج المؤسسية المعتمدة، وتأكدت من جاهزية الأجهزة للعمل اليومي.'},
+        {t: 'فحص الشبكة المحلية', d: 'تحققت من الاتصال الفعلي بالشبكة المحلية (LAN) ودمجت الملحقات الطرفية في بيئة تقنية المعلومات.'},
+        {t: 'توثيق إجراءات التشغيل (SOP)', d: 'حللت الأعطال التقنية المتكررة ووثّقت حلولها بإعداد إجراءات تشغيل قياسية (SOPs).'},
+        {t: 'التعاون مع الفريق والمستخدمين', d: 'عملت عن قرب مع موظفي تقنية المعلومات والمستخدمين لفهم الاحتياجات التشغيلية والحفاظ على موثوقية الأنظمة.'}
+      ],
+      pr_eyebrow: 'مشروع التخرج · 2026', pr_title: 'بوابة الدعم التفاعلية ودليل حل الأعطال التقنية',
+      proj: [
+        'حللت وصممت منصة ويب تفاعلية للخدمة الذاتية تساعد المستخدمين على تشخيص المشكلات التقنية الشائعة وحلها عبر مسارات عمل موجهة ومنظمة.',
+        'بنيت واجهات مبسطة وسهلة تمكّن الموظفين غير التقنيين من معالجة أعطال النظام والملحقات بشكل مستقل.',
+        'حوّلت المتطلبات الوظيفية إلى منطق عمل منظم يسهّل الصيانة والتوسع المستقبلي للنظام.',
+        'وثّقت المواصفات التقنية ومتطلبات المستخدمين ومنطق مسارات العمل لضمان سهولة الاستخدام وسلامة بنية النظام.',
+        'طبقت مبادئ هندسة البرمجيات وتحليل الأنظمة لتنظيم مكونات المشروع وهيكلتها بكفاءة.'
+      ],
+      demo: 'العرض المباشر', source: 'الكود المصدري',
+      t_printers: 'الطابعات', t_network: 'الشبكة', t_system: 'النظام', t_outlook: 'Outlook', t_security: 'الأمان',
+      note: 'أمثلة على نوع الخطوات التي تعرضها البوابة. اضغط على تبويب لإعادة التشغيل.',
+      sk_eyebrow: 'الأدوات', sk_title: 'المهارات التقنية والمهنية',
+      cats: {all: 'الكل', software: 'البرمجيات', databases: 'قواعد البيانات', systems: 'الأنظمة والبنية التحتية', analysis: 'التحليل', soft: 'المهارات الشخصية'},
+      skills: {
+        software: ['أساسيات علوم الحاسب والخوارزميات', 'مبادئ هندسة البرمجيات وتحليل الأنظمة', 'أساسيات تطوير تطبيقات الويب', 'البرمجة كائنية التوجه (OOP)'],
+        databases: ['استعلامات قواعد البيانات (SQL)', 'تصميم قواعد البيانات ونمذجة البيانات'],
+        systems: ['بيئة أنظمة تشغيل Windows', 'استكشاف الأعطال التقنية وتشخيصها', 'تهيئة محطات العمل ونشرها', 'إدارة حسابات المستخدمين والصلاحيات', 'أساسيات الشبكات المحلية (LAN)', 'تهيئة الأجهزة والملحقات'],
+        analysis: ['تحليل المتطلبات', 'التوثيق التقني ومواصفات الأنظمة', 'إعداد إجراءات التشغيل القياسية (SOPs)', 'التفكير المنطقي وحل المشكلات'],
+        soft: ['التواصل التقني الفعّال', 'العمل الجماعي والتعاون بين الفرق', 'التكيف وسرعة تعلم الأنظمة الجديدة', 'ترتيب الأولويات والاهتمام بالتفاصيل']
+      },
+      ab_eyebrow: 'الملخص المهني', ab_title: 'جاهز لأعمال تقنية المعلومات والبرمجيات',
+      ab_p1: 'خريج علوم الحاسب يجمع بين أساس أكاديمي متين في هندسة البرمجيات وقواعد البيانات وتحليل الأنظمة وخبرة عملية في بيئة تقنية معلومات مؤسسية. لدي مهارة في استكشاف الأعطال التقنية وتهيئة محطات العمل وإدارة صلاحيات المستخدمين والتوثيق التقني، وخبرة في تحليل المتطلبات وتصميم حلول ويب قائمة على منهجيات منظمة لحل المشكلات.',
+      ab_p2: 'أسعى للحصول على وظيفة تقنية أو هندسية مبتدئة أوظّف فيها مهاراتي التحليلية والتقنية لتقديم حلول رقمية قوية وفعّالة.',
+      p_edu: 'التعليم', p_edu_t: 'بكالوريوس العلوم في علوم الحاسب', p_edu_d: 'جامعة حائل · 2026',
+      p_exp: 'التدريب', p_exp_t: 'متدرب تقنية معلومات (تعاوني)', p_exp_d: 'وزارة البيئة والمياه والزراعة · مارس 2026 – أغسطس 2026',
+      p_lang: 'اللغات', p_lang_t: 'العربية · الإنجليزية', p_lang_d: 'العربية: اللغة الأم · الإنجليزية: جيد، قراءة وكتابة تقنية',
+      c_title: 'لنتواصل',
+      c_text: 'أبحث عن وظيفة مبتدئة في البرمجيات أو تقنية المعلومات. أسرع طريقة للتواصل معي هي لينكدإن، وكودي على GitHub.',
+      copy: 'نسخ', copied: 'تم النسخ', msg_li: 'راسلني على لينكدإن',
+      footer: '© 2026 سالم الحربي',
+      cv_title: 'السيرة الذاتية', open_tab: 'فتح في تبويب جديد', dl: 'تحميل PDF',
+      cv_fallback: 'إذا لم تظهر السيرة الذاتية، افتحها في تبويب جديد.',
+      toggle: 'English', toggle_label: 'Switch to English', close: 'إغلاق',
+      roles: ['خريج علوم الحاسب', 'متدرب تقنية معلومات بوزارة البيئة والمياه والزراعة', 'تحليل الأنظمة وحلول الويب', 'متاح للوظائف المبتدئة في البرمجيات وتقنية المعلومات']
+    }
+  };
+
+  var lang = 'en';
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved === 'ar' || saved === 'en') lang = saved;
+    else if ((navigator.language || '').slice(0, 2) === 'ar') lang = 'ar';
+  } catch (e) {}
+
+  var cvs = document.getElementById('net'), cx = cvs.getContext('2d');
+  var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [], mouse = {x: -9999, y: -9999};
+  function size() {
+    W = window.innerWidth; H = window.innerHeight;
+    cvs.width = W * dpr; cvs.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.max(28, Math.min(70, Math.round(W * H / 22000)));
+    nodes = [];
+    for (var i = 0; i < n; i++) nodes.push({x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35});
+    draw();
+  }
+  function draw() {
+    cx.clearRect(0, 0, W, H);
+    var i, j, a, b, dx, dy, d;
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      for (j = i + 1; j < nodes.length; j++) {
+        b = nodes[j]; dx = a.x - b.x; dy = a.y - b.y; d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 140) { cx.strokeStyle = 'rgba(56,140,255,' + (0.28 * (1 - d / 140)).toFixed(3) + ')'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); }
+      }
+      dx = a.x - mouse.x; dy = a.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 180) { cx.strokeStyle = 'rgba(56,189,248,' + (0.7 * (1 - d / 180)).toFixed(3) + ')'; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(mouse.x, mouse.y); cx.stroke(); }
+      cx.fillStyle = 'rgba(120,190,255,.85)'; cx.beginPath(); cx.arc(a.x, a.y, 1.8, 0, 6.283); cx.fill();
+    }
+  }
+  function step() {
+    for (var i = 0; i < nodes.length; i++) {
+      var a = nodes[i]; a.x += a.vx; a.y += a.vy;
+      if (a.x < 0 || a.x > W) a.vx *= -1;
+      if (a.y < 0 || a.y > H) a.vy *= -1;
+    }
+    draw(); requestAnimationFrame(step);
+  }
+  size();
+  window.addEventListener('resize', size);
+  if (!reduce) requestAnimationFrame(step);
+
+  var glow = document.getElementById('glow');
+  window.addEventListener('pointermove', function (e) {
+    mouse.x = e.clientX; mouse.y = e.clientY;
+    glow.style.setProperty('--mx', e.clientX + 'px'); glow.style.setProperty('--my', e.clientY + 'px');
+  }, {passive: true});
+  window.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
+
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+
+  var links = document.querySelectorAll('#nav a');
+  function setActive(id) {
+    links.forEach(function (a) {
+      var on = a.getAttribute('data-sec') === id;
+      a.classList.toggle('active', on);
+      if (on && a.scrollIntoView && window.innerWidth < 900) {
+        var nav = document.getElementById('nav');
+        nav.scrollLeft = a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2;
+      }
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+    }, {rootMargin: '-35% 0px -60% 0px'});
+    document.querySelectorAll('header[id], section[id]').forEach(function (s) { spy.observe(s); });
+  }
+  setActive('top');
+
+  var typedEl = document.getElementById('typed'), gen = 0;
+  function startTyping() {
+    var my = ++gen, roles = T[lang].roles, ri = 0, ci = 0, del = false;
+    if (reduce) { typedEl.innerHTML = '<b>&gt;</b> ' + roles[0]; return; }
+    (function tick() {
+      if (my !== gen) return;
+      var w = roles[ri];
+      typedEl.innerHTML = '<b>&gt;</b> ' + w.slice(0, ci);
+      if (!del && ci < w.length) { ci++; setTimeout(tick, 60); }
+      else if (!del) { del = true; setTimeout(tick, 1600); }
+      else if (ci > 0) { ci--; setTimeout(tick, 28); }
+      else { del = false; ri = (ri + 1) % roles.length; setTimeout(tick, 300); }
+    })();
+  }
+
+  var counters = document.querySelectorAll('[data-count]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var t = +e.target.getAttribute('data-count'), s = performance.now();
+        (function f(n) {
+          var p = Math.min(1, (n - s) / 900);
+          e.target.textContent = Math.round(t * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(f);
+        })(s);
+      });
+    }, {threshold: .6});
+    counters.forEach(function (c) { io.observe(c); });
+  }
+
+  var openSet = {0: true};
+  var xpEl = document.getElementById('xp');
+  function renderExp() {
+    xpEl.innerHTML = '';
+    T[lang].exp.forEach(function (it, i) {
+      var box = document.createElement('div');
+      box.className = 'xp' + (openSet[i] ? ' open' : '');
+      var h = document.createElement('button');
+      h.type = 'button'; h.className = 'xp-h';
+      h.setAttribute('aria-expanded', openSet[i] ? 'true' : 'false');
+      var s = document.createElement('span'); s.textContent = it.t;
+      var pm = document.createElement('span'); pm.className = 'pm'; pm.setAttribute('aria-hidden', 'true');
+      h.appendChild(s); h.appendChild(pm);
+      var p = document.createElement('div'); p.className = 'xp-p';
+      var inner = document.createElement('div');
+      var para = document.createElement('p'); para.textContent = it.d;
+      inner.appendChild(para); p.appendChild(inner);
+      h.addEventListener('click', function () {
+        var on = !box.classList.contains('open');
+        box.classList.toggle('open', on);
+        h.setAttribute('aria-expanded', on ? 'true' : 'false');
+        openSet[i] = on;
+      });
+      box.appendChild(h); box.appendChild(p);
+      xpEl.appendChild(box);
+    });
+  }
+
+  var projEl = document.getElementById('proj');
+  function renderProj() {
+    projEl.innerHTML = '';
+    T[lang].proj.forEach(function (t) {
+      var li = document.createElement('li'); li.textContent = t; projEl.appendChild(li);
+    });
+  }
+
+  var catColors = {software: '#2F6BFF', databases: '#38BDF8', systems: '#6C8CFF', analysis: '#5AD2FF', soft: '#9BD8FF'};
+  var catOrder = ['all', 'software', 'databases', 'systems', 'analysis', 'soft'];
+  var activeCat = 'all';
+  var filtersEl = document.getElementById('filters'), chipsEl = document.getElementById('chips');
+  function renderChips() {
+    chipsEl.innerHTML = '';
+    var list = [];
+    catOrder.slice(1).forEach(function (c) {
+      if (activeCat === 'all' || activeCat === c) T[lang].skills[c].forEach(function (s) { list.push({s: s, c: c}); });
+    });
+    list.forEach(function (it, i) {
+      var d = document.createElement('div');
+      d.className = 'chip'; d.textContent = it.s;
+      d.style.setProperty('--c', catColors[it.c]);
+      d.style.animationDelay = (i * 35) + 'ms';
+      chipsEl.appendChild(d);
+    });
+  }
+  function renderFilters() {
+    filtersEl.innerHTML = '';
+    catOrder.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'filter'; b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', c === activeCat ? 'true' : 'false');
+      b.textContent = T[lang].cats[c];
+      b.addEventListener('click', function () {
+        activeCat = c;
+        filtersEl.querySelectorAll('.filter').forEach(function (x, i) { x.setAttribute('aria-selected', catOrder[i] === c ? 'true' : 'false'); });
+        renderChips();
+      });
+      filtersEl.appendChild(b);
+    });
+  }
+
+  var flows = {
+    printers: [['p', 'C:\\> ', 'net stop spooler'], ['t', '', 'The Print Spooler service is stopping.'], ['ok', '', 'Print Spooler stopped.'], ['p', 'C:\\> ', 'net start spooler'], ['ok', '', 'Print Spooler started. Try printing again.']],
+    network: [['p', 'C:\\> ', 'ipconfig /flushdns'], ['ok', '', 'DNS Resolver Cache flushed.'], ['p', 'C:\\> ', 'ping -n 4 8.8.8.8'], ['t', '', 'Reply from 8.8.8.8: bytes=32 time=18ms'], ['ok', '', 'Connection is healthy. Check VPN next.']],
+    system: [['p', 'C:\\> ', 'sfc /scannow'], ['t', '', 'Beginning system scan, this takes a few minutes.'], ['ok', '', 'Scan finished. Restart if repairs were made.']],
+    outlook: [['p', 'C:\\> ', 'outlook.exe /safe'], ['t', '', 'Starting Outlook in safe mode.'], ['ok', '', 'Disable add-ins one by one to find the cause.']],
+    security: [['p', 'PS> ', 'Unlock-ADAccount -Identity <username>'], ['ok', '', 'Account unlocked. Ask the user to sign in again.']]
+  };
+  var screen = document.getElementById('screen'), timer = null;
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function lineHTML(l, txt) { return '<span class="' + l[0] + '">' + esc(l[1]) + '</span>' + (l[0] === 'p' ? esc(txt) : '<span class="' + l[0] + '">' + esc(txt) + '</span>'); }
+  function show(k) { var h = ''; flows[k].forEach(function (l) { h += lineHTML(l, l[2]) + '\n'; }); screen.innerHTML = h; }
+  function play(k) {
+    clearTimeout(timer);
+    if (reduce) { show(k); return; }
+    var f = flows[k], li = 0, ci = 0, done = '';
+    (function tick() {
+      if (li >= f.length) { screen.innerHTML = done; return; }
+      var l = f[li];
+      if (l[0] === 'p') {
+        if (ci < l[2].length) { ci++; screen.innerHTML = done + lineHTML(l, l[2].slice(0, ci)) + '<span class="caret"></span>'; timer = setTimeout(tick, 28); return; }
+      }
+      done += lineHTML(l, l[2]) + '\n'; li++; ci = 0; screen.innerHTML = done;
+      timer = setTimeout(tick, l[0] === 'p' ? 350 : 260);
+    })();
+  }
+  show('printers');
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.setAttribute('aria-selected', x === t ? 'true' : 'false'); });
+      play(t.getAttribute('data-k'));
+    });
+  });
+
+  var card = document.getElementById('tilt');
+  if (!reduce && window.matchMedia('(hover:hover)').matches) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = 'perspective(900px) rotateY(' + (x * 5).toFixed(2) + 'deg) rotateX(' + (-y * 5).toFixed(2) + 'deg)';
+    });
+    card.addEventListener('pointerleave', function () { card.style.transform = ''; });
+  }
+
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var txt = b.getAttribute('data-copy');
+      function ok() { b.textContent = T[lang].copied; setTimeout(function () { b.textContent = T[lang].copy; }, 1400); }
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents(b.parentNode.querySelector('code'));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+      try { navigator.clipboard.writeText(txt).then(ok, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  var modal = document.getElementById('modal'), frame = document.getElementById('frame'), closeBtn = document.getElementById('close'), opener = null;
+  function openCV(from) {
+    opener = from || null;
+    if (!frame.getAttribute('src')) frame.setAttribute('src', 'Salem-Alharbi-CV.pdf#view=FitH');
+    modal.classList.add('open');
+    document.body.classList.add('lock');
+    closeBtn.focus();
+  }
+  function closeCV() {
+    modal.classList.remove('open');
+    document.body.classList.remove('lock');
+    if (opener && opener.focus) opener.focus();
+  }
+  document.querySelectorAll('.cv-open').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); openCV(a); });
+  });
+  closeBtn.addEventListener('click', closeCV);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeCV(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeCV();
+  });
+
+  var langBtn = document.getElementById('lang');
+  function apply() {
+    var d = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = d.name;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (typeof d[k] === 'string') el.textContent = d[k];
+    });
+    langBtn.textContent = d.toggle;
+    langBtn.setAttribute('aria-label', d.toggle_label);
+    closeBtn.setAttribute('aria-label', d.close);
+    renderExp(); renderProj(); renderFilters(); renderChips();
+    startTyping();
+  }
+  langBtn.addEventListener('click', function () {
+    lang = lang === 'en' ? 'ar' : 'en';
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    apply();
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
